@@ -1,0 +1,2 @@
+# myFirstProject
+shell scripting example
