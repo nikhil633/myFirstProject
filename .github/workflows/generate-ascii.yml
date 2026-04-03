@@ -36,7 +36,7 @@ jobs:
               uses: actions/upload-artifact@v6
               with:
                 name: my-artifact
-                path: path/to/artifact/world.txt
+                path: dragon.txt
 
     deploy_job_2:
         needs: deploy_job_1
@@ -45,7 +45,7 @@ jobs:
         - name: Download Dragon File
           uses: actions/download-artifact@v6
           with:
-            name: dragon.txt
+            name: my-artifact
         
         - name: Text file Exists
           run: grep -i "dragon" dragon.txt      
@@ -57,7 +57,7 @@ jobs:
         - name: Download Dragon
           uses: actions/download-artifact@v6
           with:
-            name: dragon.txt
+            name: my-artifact
 
         - name: Read File
           run: cat dragon.txt
