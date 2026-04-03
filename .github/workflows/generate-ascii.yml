@@ -36,6 +36,7 @@ jobs:
               run: sleep 30
 
     deploy_job_2:
+        needs: deploy_job_1
         runs-on: ubuntu-latest
         steps:
         - name: sleep for 10 secs
@@ -45,6 +46,7 @@ jobs:
           run: grep -i "dragon" dragon.txt      
 
     deploy_job_3:
+        needs: deploy_job_2
         runs-on: ubuntu-latest
         steps:
         - name: Read File
