@@ -32,15 +32,20 @@ jobs:
             - name: Generate ASCII Artwork
               run: cowsay -f dragon "Run for cover , I am a dragon " >> dragon.txt  
             
-            - name: sleep for 30 seconds
-              run: sleep 30
+            - name: Upload Dragon textfile
+              uses: actions/upload-artifact@v3
+              with:
+                name: my-artifact
+                path: path/to/artifact/world.txt
 
     deploy_job_2:
         needs: deploy_job_1
         runs-on: ubuntu-latest
         steps:
-        - name: sleep for 10 secs
-          run: sleep 10
+        - name: Download Dragon File
+          uses: actions/download-artifact@v3
+          with:
+            name: dragon-text-file
         
         - name: Text file Exists
           run: grep -i "dragon" dragon.txt      
@@ -49,6 +54,11 @@ jobs:
         needs: deploy_job_2
         runs-on: ubuntu-latest
         steps:
+        - name: Download Dragon File
+          uses: actions/download-artifact@v3
+          with:
+            name: dragon-text-file
+
         - name: Read File
           run: cat dragon.txt
         
